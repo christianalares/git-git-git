@@ -1,0 +1,38 @@
+{
+  "name": "git-cli-tool",
+  "version": "1.0.0",
+  "description": "A CLI tool for managing your git branches",
+  "main": "./src/index.js",
+  "bin": {
+    "ggb": "./src/index.js"
+  },
+  "scripts": {
+    "dev": "babel ./src/index.js -o cli.js -w",
+    "build": "babel ./src/index.js -o ./dist/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.13.17",
+    "ink": "^3.0.8",
+    "ink-select-input": "^4.2.0",
+    "react": "^17.0.2",
+    "simple-git": "^2.38.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1"
+  }
+}
