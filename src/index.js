@@ -1,59 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import simpleGit from 'simple-git'
-import { render, Text, useApp, useInput } from 'ink'
-import SelectInput from 'ink-select-input'
+import React from 'react'
+import { render } from 'ink'
+import SettingsProvider from './providers/SettingsProvider'
+import ViewsProvider from './providers/ViewsProvider'
+import BranchesProvider from './providers/BranchesProvider'
+import App from './components/App'
 
-const thisFolder = process.cwd()
-
-const git = simpleGit({
-  baseDir: thisFolder,
-})
-
-const App = () => {
-  const [branches, setBranches] = useState([])
-  const [error, setError] = useState('')
-  const { exit } = useApp()
-
-  useEffect(() => {
-    git.branchLocal(async (_commands, output) => {
-      if (!output) {
-        setError(`😕 This folder (${thisFolder}) is not a git repository.`)
-        exit()
-      } else {
-        const branchItems = output.all.map((branch, i) => ({
-          label: `${i + 1}) ${branch}`,
-          value: branch,
-        }))
-        setBranches(branchItems)
-      }
-    })
-  }, [])
-
-  useInput((input, key) => {
-    if (input === 'q') {
-      exit()
-    }
-  })
-
-  if (error) {
-    return <Text>{error}</Text>
-  }
-
-  if (branches.length === 0) {
-    return null
-  }
-
+const Index = () => {
   return (
-    <>
-      <Text color="green">These are your local branches</Text>
-      <SelectInput
-        items={branches}
-        onSelect={a => {
-          console.log(a)
-        }}
-      />
-    </>
+    <ViewsProvider>
+      <SettingsProvider>
+        <BranchesProvider>
+          <App />
+        </BranchesProvider>
+      </SettingsProvider>
+    </ViewsProvider>
   )
 }
 
-render(<App />)
+render(<Index />)

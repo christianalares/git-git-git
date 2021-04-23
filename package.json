@@ -7,7 +7,7 @@
     "ggb": "./src/index.js"
   },
   "scripts": {
-    "dev": "node index.js",
+    "dev": "DEV=true node index.js",
     "build": "npm run clean && babel ./src -d ./dist",
     "clean": "rimraf ./dist"
   },
@@ -15,8 +15,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.1",
     "ink": "^3.0.8",
+    "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.0",
+    "ink-text-input": "^4.0.1",
     "react": "^17.0.2",
     "simple-git": "^2.38.0"
   },

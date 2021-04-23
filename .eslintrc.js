@@ -26,5 +26,6 @@ module.exports = {
     ],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'arrow-body-style': 'off',
+    'react/prop-types': 'off',
   },
 }
