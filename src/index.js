@@ -20,7 +20,6 @@ const App = () => {
         setError(`😕 This folder (${thisFolder}) is not a git repository.`)
         exit()
       } else {
-        console.log(output)
         const branchItems = output.all.map((branch, i) => ({
           label: `${i + 1}) ${branch}`,
           value: branch,
