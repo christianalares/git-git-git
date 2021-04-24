@@ -10,13 +10,14 @@ const CreateBranchForm = () => {
   const setView = useView(({ set }) => set)
 
   const handleSubmit = async () => {
-    // child_process.execSync(`git checkout -b ${input}`, {
-    //   stdio: 'inherit',
-    // })
     if (input === '') {
       return
     }
-    console.log('should create branch222', input)
+
+    // child_process.execSync(`git checkout -b ${input}`, {
+    //   stdio: 'inherit',
+    // })
+    console.log('should create branch', input)
     setView('home')
   }
 
