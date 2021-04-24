@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Text, useInput } from 'ink'
+import { Box, Text, useInput } from 'ink'
 import { useKeyboardNav } from '../store'
 
 const Help = () => {
@@ -14,13 +14,15 @@ const Help = () => {
   })
 
   return (
-    <Text color="white">
-      {commands.map(({ input, key, label }) => (
-        <Fragment key={input || key}>
-          [{input || key}] <Text color="grey">{label}</Text>{' '}
-        </Fragment>
-      ))}
-    </Text>
+    <Box>
+      <Text color="white">
+        {commands.map(({ input, key, label }) => (
+          <Fragment key={input || key}>
+            [{input || key}] <Text color="grey">{label}</Text>{' '}
+          </Fragment>
+        ))}
+      </Text>
+    </Box>
   )
 }
 

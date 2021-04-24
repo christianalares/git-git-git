@@ -9,7 +9,7 @@ const CreateBranch = () => {
   const setNav = useKeyboardNav(state => state.set)
 
   useEffect(() => {
-    setNav([keyboardNav.abortCreateBranch, keyboardNav.enterToCreateBranch])
+    setNav([keyboardNav.abortAndGoHome, keyboardNav.enterToCreateBranch])
   }, [])
 
   return (

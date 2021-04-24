@@ -1,15 +1,19 @@
 {
-  "name": "git-cli-tool",
-  "version": "1.0.0",
+  "name": "git-git-git",
+  "version": "0.1.0",
   "description": "A CLI tool for managing your git branches",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "bin": {
-    "ggb": "./src/index.js"
+    "ggg": "./dist/index.js"
   },
   "scripts": {
-    "dev": "DEV=true node index.js",
+    "watch": "npm run clean && DEV=true babel ./src -d ./dist -w",
     "build": "npm run clean && babel ./src -d ./dist",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "lint": "eslint '**/*.js' --ignore-path .gitignore"
   },
   "keywords": [],
   "author": "",
