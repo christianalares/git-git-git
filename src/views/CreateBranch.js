@@ -1,30 +1,21 @@
-import { Box, useInput } from 'ink'
+import { Box } from 'ink'
 import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import CreateBranchForm from '../components/CreateBranchForm'
-import useViews from '../hooks/useViews'
-import useSettings from '../hooks/useSettings'
+import { useKeyboardNav } from '../store'
+import keyboardNav from '../keyboardNav'
 
 const CreateBranch = () => {
-  const { setView } = useViews()
-  const { disableKeyboardNav, enableKeyboardNav } = useSettings()
+  const setNav = useKeyboardNav(state => state.set)
 
   useEffect(() => {
-    disableKeyboardNav()
-
-    return () => enableKeyboardNav()
+    setNav([keyboardNav.abortCreateBranch, keyboardNav.enterToCreateBranch])
   }, [])
-
-  useInput((_input, key) => {
-    if (key.escape) {
-      setView('home')
-    }
-  })
 
   return (
     <Box flexDirection="column">
       <Header />
-      <CreateBranchForm cancel={() => setView('home')} />
+      <CreateBranchForm />
     </Box>
   )
 }

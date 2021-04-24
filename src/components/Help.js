@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react'
-import { Text } from 'ink'
-import useSettings from '../hooks/useSettings'
+import React, { Fragment } from 'react'
+import { Text, useInput } from 'ink'
+import { useKeyboardNav } from '../store'
 
 const Help = () => {
-  const { isKeyboardNavEnabled } = useSettings()
+  const commands = useKeyboardNav(state => state.commands)
 
-  const keyColor = isKeyboardNavEnabled ? 'white' : 'grey'
+  useInput((input, key) => {
+    commands.forEach(cmd => {
+      if ((cmd.input && cmd.input === input) || (cmd.key && key[cmd.key])) {
+        cmd.fn()
+      }
+    })
+  })
 
   return (
-    <Text color={keyColor}>
-      [c] <Text color="grey">Create new branch</Text> [r]{' '}
-      <Text color="grey">Rename selected branch</Text> [d]{' '}
-      <Text color="grey">Delete selected branch</Text> [q/esc/ctrl+c]{' '}
-      <Text color="grey">Abort</Text>
+    <Text color="white">
+      {commands.map(({ input, key, label }) => (
+        <Fragment key={input || key}>
+          [{input || key}] <Text color="grey">{label}</Text>{' '}
+        </Fragment>
+      ))}
     </Text>
   )
 }

@@ -1,24 +1,10 @@
 import React from 'react'
-import useViews from '../hooks/useViews'
+import { useView } from '../store'
 import Home from '../views/Home'
 import CreateBranch from '../views/CreateBranch'
 
 const App = () => {
-  const { view } = useViews()
-  // const [showCreateBranchForm, setShowCreateBranchForm] = useState(false)
-  // const [isKeyboardNavEnabled, setIsKeyboardNavEnabled] = useState(true)
-
-  // useInput(input => {
-  //   if (isKeyboardNavEnabled) {
-  //     if (input === 'q' && !showCreateBranchForm) {
-  //       process.exit(0)
-  //     }
-
-  //     if (input === 'c') {
-  //       setShowCreateBranchForm(true)
-  //     }
-  //   }
-  // })
+  const view = useView(state => state.view)
 
   if (view === 'home') {
     return <Home />
