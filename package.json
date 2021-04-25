@@ -1,6 +1,6 @@
 {
   "name": "git-git-git",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A CLI tool for managing your git branches",
   "main": "./dist/index.js",
   "files": [
