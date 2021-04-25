@@ -15,9 +15,17 @@
     "clean": "rimraf ./dist",
     "lint": "eslint '**/*.js' --ignore-path .gitignore"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianalares/git-branch-selector"
+  },
+  "keywords": [
+    "git",
+    "git-git-git",
+    "git cli tool"
+  ],
+  "author": "Christian Alares",
+  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.13.17",
     "chalk": "^4.1.1",
