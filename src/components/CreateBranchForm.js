@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TextInput from 'ink-text-input'
-// import child_process from 'child_process'
-import { Box, Text } from 'ink'
+import { Box } from 'ink'
 import { useCreateBranchForm, useMessage, useView } from '../store'
 import git from '../utils/git'
 

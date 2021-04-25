@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useInput, Box, Text } from 'ink'
+import React from 'react'
+import { Box } from 'ink'
 import Logo from './Logo'
 import Help from './Help'
 

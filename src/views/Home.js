@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Box, Text } from 'ink'
 import BranchList from '../components/BranchList'
-import { useBranches, useMessage, useKeyboardNav } from '../store'
+import { useBranches, useKeyboardNav } from '../store'
 import keyboardNav from '../keyboardNav'
 import Layout from '../components/Layout'
 

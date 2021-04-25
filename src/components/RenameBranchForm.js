@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Text } from 'ink'
+import { Box } from 'ink'
 import TextInput from 'ink-text-input'
 import { useBranches, useMessage, useRenameBranchForm, useView } from '../store'
 import git from '../utils/git'
