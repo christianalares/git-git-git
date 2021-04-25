@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Box } from 'ink'
-import Header from '../components/Header'
+import { Box, Text } from 'ink'
 import BranchList from '../components/BranchList'
-import { useBranches, useKeyboardNav } from '../store'
+import { useBranches, useMessage, useKeyboardNav } from '../store'
 import keyboardNav from '../keyboardNav'
+import Layout from '../components/Layout'
 
 const Home = () => {
   const setNav = useKeyboardNav(state => state.set)
@@ -16,26 +16,12 @@ const Home = () => {
       keyboardNav.deleteBranch,
       keyboardNav.quit,
     ])
-  }, [])
-
-  // useEffect(() => {
-  //   if (branches.length === 0) {
-  //     setNav([keyboardNav.createBranch, keyboardNav.quit])
-  //   } else {
-  //     setNav([
-  //       keyboardNav.createBranch,
-  //       keyboardNav.renameBranch,
-  //       keyboardNav.deleteBranch,
-  //       keyboardNav.quit,
-  //     ])
-  //   }
-  // }, [branches])
+  }, [branches])
 
   return (
-    <Box flexDirection="column">
-      <Header />
+    <Layout>
       <BranchList />
-    </Box>
+    </Layout>
   )
 }
 

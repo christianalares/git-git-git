@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useKeyboardNav, useRenameBranchForm } from '../store'
 import keyboardNav from '../keyboardNav'
-import RenameBranchForm from '../components/RenameBranchForm'
+import ConfirmDeleteBranch from '../components/ConfirmDeleteBranch'
 import Layout from '../components/Layout'
 
 const RenameBranch = () => {
@@ -9,16 +9,12 @@ const RenameBranch = () => {
   const input = useRenameBranchForm(state => state.input)
 
   useEffect(() => {
-    if (input.length > 0) {
-      setNav([keyboardNav.escapeToClearRenameForm, keyboardNav.enterToRenameBranch])
-    } else {
-      setNav([keyboardNav.abortAndGoHome])
-    }
+    setNav([keyboardNav.confirmDeleteBranch, keyboardNav.dismissDeleteBranch])
   }, [input])
 
   return (
     <Layout>
-      <RenameBranchForm />
+      <ConfirmDeleteBranch />
     </Layout>
   )
 }

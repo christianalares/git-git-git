@@ -3,6 +3,7 @@ import { useView } from '../store'
 import Home from '../views/Home'
 import CreateBranch from '../views/CreateBranch'
 import RenameBranch from '../views/RenameBranch'
+import DeleteBranch from '../views/DeleteBranch'
 
 const App = () => {
   const view = useView(state => state.view)
@@ -17,6 +18,10 @@ const App = () => {
 
   if (view === 'renameBranch') {
     return <RenameBranch />
+  }
+
+  if (view === 'deleteBranch') {
+    return <DeleteBranch />
   }
 
   return null

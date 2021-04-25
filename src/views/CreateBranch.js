@@ -1,22 +1,25 @@
-import { Box } from 'ink'
 import React, { useEffect } from 'react'
-import Header from '../components/Header'
 import CreateBranchForm from '../components/CreateBranchForm'
-import { useKeyboardNav } from '../store'
+import { useCreateBranchForm, useKeyboardNav } from '../store'
 import keyboardNav from '../keyboardNav'
+import Layout from '../components/Layout'
 
 const CreateBranch = () => {
   const setNav = useKeyboardNav(state => state.set)
+  const input = useCreateBranchForm(state => state.input)
 
   useEffect(() => {
-    setNav([keyboardNav.abortAndGoHome, keyboardNav.enterToCreateBranch])
-  }, [])
+    if (input.length > 0) {
+      setNav([keyboardNav.escapeToClearCreateForm, keyboardNav.enterToCreateBranch])
+    } else {
+      setNav([keyboardNav.abortAndGoHome])
+    }
+  }, [input])
 
   return (
-    <Box flexDirection="column">
-      <Header />
+    <Layout>
       <CreateBranchForm />
-    </Box>
+    </Layout>
   )
 }
 

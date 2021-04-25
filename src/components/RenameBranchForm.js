@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Text } from 'ink'
 import TextInput from 'ink-text-input'
-import { useBranches, useKeyboardNav, useRenameBranchForm, useView } from '../store'
-import exec from '../utils/exec'
-import keyboardNav from '../keyboardNav'
+import { useBranches, useMessage, useRenameBranchForm, useView } from '../store'
+import git from '../utils/git'
 
 const RenameBranchForm = () => {
   const setView = useView(state => state.set)
-  const setNav = useKeyboardNav(state => state.set)
+  const setMessage = useMessage(state => state.set)
+  const unsetMessage = useMessage(state => state.unset)
   const input = useRenameBranchForm(state => state.input)
   const setInput = useRenameBranchForm(state => state.set)
   const highlightedBranch = useBranches(state => state.highlighted)
@@ -17,13 +17,11 @@ const RenameBranchForm = () => {
     setInput(highlightedBranch)
   }, [])
 
-  // useEffect(() => {
-  //   if (input.length > 0) {
-  //     setNav([keyboardNav.escapeToClearRenameForm])
-  //   }
-  // }, [input])
+  useEffect(() => {
+    unsetMessage()
+  }, [input])
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (input === '') {
       setBorderColor('red')
       setTimeout(() => {
@@ -32,9 +30,13 @@ const RenameBranchForm = () => {
       return
     }
 
-    exec(`git branch -m ${highlightedBranch} ${input}`)
-    setView('home')
-    setInput('')
+    try {
+      await git.branch(['-m', highlightedBranch, input])
+      setView('home')
+      setInput('')
+    } catch (err) {
+      setMessage('error', err.message)
+    }
   }
 
   return (
@@ -53,14 +55,6 @@ const RenameBranchForm = () => {
           onSubmit={handleSubmit}
         />
       </Box>
-      {input.length > 0 && (
-        <Box marginTop="1">
-          <Text color="green">$ </Text>
-          <Text color="white">
-            git branch -m {highlightedBranch} {input}
-          </Text>
-        </Box>
-      )}
     </>
   )
 }

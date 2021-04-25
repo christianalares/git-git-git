@@ -40,3 +40,14 @@ export const useRenameBranchForm = create(set => ({
   input: '',
   set: input => set(() => ({ input })),
 }))
+
+export const useMessage = create(set => ({
+  message: '',
+  type: '', // 'error' | 'success'
+  set: (type, message) =>
+    set(() => ({
+      message: message.includes('fatal: ') ? message.split('fatal: ')[1] : message,
+      type,
+    })),
+  unset: () => set(() => ({ message: '', type: '' })),
+}))

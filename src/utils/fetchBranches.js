@@ -1,11 +1,7 @@
-import simpleGit from 'simple-git'
 import chalk from 'chalk'
+import git from './git'
 
 const thisFolder = process.cwd()
-
-const git = simpleGit({
-  baseDir: thisFolder,
-})
 
 const getBranchName = (branch, current) =>
   `${branch === current ? `${branch} ${chalk.italic('(current)')}` : branch}`
