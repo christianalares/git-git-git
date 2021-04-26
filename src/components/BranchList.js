@@ -48,6 +48,9 @@ const BranchList = () => {
         setHighlightedBranch(highlighted.value)
         unsetMessage()
       }}
+      itemComponent={({ label, isSelected = false }) => (
+        <Text color={isSelected ? 'cyan' : undefined}>{label}</Text>
+      )}
     />
   )
 }
