@@ -1,5 +1,6 @@
 import create from 'zustand'
 import fetchBranches from './utils/fetchBranches'
+import filterMessage from './utils/filterMessage'
 
 export const useView = create(set => ({
   view: 'home',
@@ -44,10 +45,11 @@ export const useRenameBranchForm = create(set => ({
 export const useMessage = create(set => ({
   message: '',
   type: '', // 'error' | 'success'
-  set: (type, message) =>
-    set(() => ({
-      message: message.includes('fatal: ') ? message.split('fatal: ')[1] : message,
+  set: (type, message) => {
+    return set(() => ({
+      message: filterMessage(message),
       type,
-    })),
+    }))
+  },
   unset: () => set(() => ({ message: '', type: '' })),
 }))
