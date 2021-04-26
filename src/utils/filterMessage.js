@@ -8,7 +8,6 @@ const filterMessage = msg => {
       newMessage = msg.split(filter)[1]
     }
   })
-  console.log(newMessage)
   return newMessage
 }
 
